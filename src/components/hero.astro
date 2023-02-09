@@ -3,6 +3,23 @@ import { Picture } from "@astrojs/image/components";
 import heroImage from "assets/hero.png";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon";
+import json from 'assets/results.json';
+
+const returnPerc = json.return / 100;
+const initialValues = [
+  10000000, 100000000
+]
+
+const nowValues = initialValues.map(item => item + (item * returnPerc))
+function format(full){
+  return `Rp ${(full / 1000000) | 0}Mio`
+}
+
+function getRandom(){
+  return Math.floor(Math.random() * 2);
+}
+
+let rdm = getRandom()
 ---
 
 <main
@@ -21,33 +38,22 @@ import { Icon } from "astro-icon";
   <div>
     <h1
       class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Marketing website done with Astro
+      If I trade {format(initialValues[rdm])} then
+    </h1>
+    <h1
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      I will get {format(nowValues[rdm])} now
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Astroship is a starter template for startups, marketing websites & landing
-      pages.<wbr /> Built with Astro.build and TailwindCSS. You can quickly create
-      any website with this starter.
+      If I Trade is an AI Based algorithm who perform trades on stocks listed on Indonesia's IDX.
+      <wbr />The tool here is for research purpose only, and can be updated at any given time without any notice.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
-        href="#"
-        href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
-        target="_blank"
+        href="#start"
         class="flex gap-1 items-center justify-center"
         rel="noopener">
-        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
-
-        Download for Free
-      </Link>
-      <Link
-        size="lg"
-        style="outline"
-        rel="noopener"
-        href="https://github.com/surjithctly/astroship"
-        class="flex gap-1 items-center justify-center"
-        target="_blank">
-        <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-        Github Repo
+        How is it going
       </Link>
     </div>
   </div>
